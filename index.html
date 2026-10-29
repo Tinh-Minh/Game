@@ -3,680 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngọc Rồng Online 2D - Dragon Ball Online</title>
-    <meta name="description" content="Game nhập vai Ngọc Rồng Online 2D - Khám phá thế giới Dragon Ball Online">
+    <title>Ngọc Rồng Online - Tải Game Miễn Phí (PC & Android)</title>
+    <meta name="description" content="Trang tải game Ngọc Rồng Online - Máy chủ riêng cày cuốc cực hot, đồ họa đẹp mắt, hoạt động 24/7. Tải bản PC và Android APK ngay hôm nay!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/ui.css">
-    <link rel="stylesheet" href="css/screens.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="screen active">
-        <div class="loading-bg"></div>
-        <div class="loading-content">
-            <div class="logo-container">
-                <div class="dragon-ball-logo">
-                    <div class="star-1"></div>
-                    <div class="star-2"></div>
-                    <div class="star-3"></div>
-                </div>
-                <h1 class="game-title">
-                    <span class="title-ngoc">NGỌC</span>
-                    <span class="title-rong">RỒNG</span>
-                    <span class="title-online">ONLINE</span>
-                </h1>
-                <p class="game-subtitle">Dragon Ball Online 2D</p>
+    <div class="bg-glow"></div>
+    
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <span class="logo-icon">🐉</span>
+                <span class="logo-text">NGỌC RỒNG <span class="highlight">ONLINE</span></span>
             </div>
-            <div class="loading-bar-container">
-                <div class="loading-bar" id="loading-bar"></div>
-                <span class="loading-text" id="loading-text">Đang tải...</span>
-            </div>
-            <div class="loading-tips" id="loading-tips">Mẹo: Nhấn Z để tấn công cơ bản</div>
-        </div>
-        <div class="loading-particles" id="loading-particles"></div>
-    </div>
-
-    <!-- Login Screen -->
-    <div id="login-screen" class="screen">
-        <div class="login-bg"></div>
-        <div class="login-overlay"></div>
-        <div class="login-container">
-            <div class="login-logo">
-                <div class="nro-emblem">
-                    <img src="assets/ui/logo.svg" alt="NRO Logo" onerror="this.style.display='none'">
-                    <div class="emblem-fallback">🐉</div>
-                </div>
-                <h1>NGỌC RỒNG ONLINE</h1>
-                <p>Thế giới Dragon Ball Online</p>
-            </div>
-            <div class="login-form-box">
-                <h2>ĐĂNG NHẬP</h2>
-                <div class="form-group">
-                    <label for="username">Tên tài khoản</label>
-                    <input type="text" id="username" placeholder="Nhập tên tài khoản..." maxlength="20">
-                </div>
-                <div class="form-group">
-                    <label for="password">Mật khẩu</label>
-                    <input type="password" id="password" placeholder="Nhập mật khẩu..." maxlength="30">
-                </div>
-                <button class="btn-primary" id="btn-login" onclick="GameApp.login()">
-                    <span>ĐĂNG NHẬP</span>
-                </button>
-                <button class="btn-secondary" id="btn-register" onclick="GameApp.showRegister()">
-                    <span>TẠO TÀI KHOẢN MỚI</span>
-                </button>
-                <div class="login-notice">
-                    <p>🎮 Chơi offline - Không cần internet</p>
-                    <p>💾 Dữ liệu lưu trên máy tính của bạn</p>
-                </div>
+            <div class="server-status">
+                <span class="status-dot"></span>
+                <span class="status-text">Server: <strong>ONLINE</strong> (24/7)</span>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Register Screen -->
-    <div id="register-screen" class="screen">
-        <div class="login-bg"></div>
-        <div class="login-overlay"></div>
-        <div class="login-container">
-            <div class="login-logo">
-                <div class="nro-emblem">🐉</div>
-                <h1>NGỌC RỒNG ONLINE</h1>
-                <p>Khởi đầu hành trình mới</p>
-            </div>
-            <div class="login-form-box">
-                <h2>TẠO TÀI KHOẢN</h2>
-                <div class="form-group">
-                    <label for="reg-username">Tên tài khoản mới</label>
-                    <input type="text" id="reg-username" placeholder="Tên từ 4-20 ký tự..." maxlength="20">
-                </div>
-                <div class="form-group">
-                    <label for="reg-password">Mật khẩu</label>
-                    <input type="password" id="reg-password" placeholder="Nhập mật khẩu..." maxlength="30">
-                </div>
-                <div class="form-group">
-                    <label for="reg-password-confirm">Xác nhận mật khẩu</label>
-                    <input type="password" id="reg-password-confirm" placeholder="Nhập lại mật khẩu..." maxlength="30">
-                </div>
-                <button class="btn-primary" id="btn-do-register" onclick="GameApp.register()">
-                    <span>XÁC NHẬN ĐĂNG KÝ</span>
-                </button>
-                <button class="btn-secondary" onclick="GameApp.showScreen('login')">
-                    <span>QUAY LẠI ĐĂNG NHẬP</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Character Select Screen -->
-    <div id="char-select-screen" class="screen">
-        <div class="char-select-bg"></div>
-        <div class="char-select-container">
-            <div class="char-select-header">
-                <h1>CHỌN NHÂN VẬT</h1>
-                <button class="btn-logout" onclick="GameApp.logout()">← Đăng xuất</button>
-            </div>
-            <div class="char-slots" id="char-slots">
-                <!-- Filled by JS -->
-            </div>
-            <div class="char-select-actions">
-                <button class="btn-primary" id="btn-enter-game" disabled onclick="GameApp.enterGame()">
-                    <span>VÀO GAME</span>
-                </button>
-                <button class="btn-create-char" id="btn-create-char" onclick="GameApp.showCharCreate()">
-                    <span>+ TẠO NHÂN VẬT</span>
-                </button>
-                <button class="btn-delete-char" id="btn-delete-char" disabled onclick="GameApp.deleteChar()">
-                    <span>XÓA NHÂN VẬT</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Character Create Screen -->
-    <div id="char-create-screen" class="screen">
-        <div class="char-create-bg"></div>
-        <div class="char-create-container">
-            <div class="char-create-header">
-                <button class="btn-back" onclick="GameApp.showCharSelect()">← Quay lại</button>
-                <h1>TẠO NHÂN VẬT</h1>
-            </div>
-            <div class="char-create-content">
-                <!-- Race Selection -->
-                <div class="race-selection">
-                    <h2>Chọn Chủng Tộc</h2>
-                    <div class="race-cards" id="race-cards">
-                        <div class="race-card" data-race="human" onclick="GameApp.selectRace('human')">
-                            <div class="race-icon">👨</div>
-                            <h3>CON NGƯỜI</h3>
-                            <p>Cân bằng giữa tấn công và phòng thủ. Có thể học nhiều kỹ năng đa dạng.</p>
-                            <div class="race-stats">
-                                <div class="stat-bar"><span>ATK</span><div class="bar"><div style="width:70%"></div></div></div>
-                                <div class="stat-bar"><span>DEF</span><div class="bar"><div style="width:60%"></div></div></div>
-                                <div class="stat-bar"><span>SPD</span><div class="bar"><div style="width:75%"></div></div></div>
-                            </div>
-                        </div>
-                        <div class="race-card" data-race="namek" onclick="GameApp.selectRace('namek')">
-                            <div class="race-icon">👾</div>
-                            <h3>NAMEK</h3>
-                            <p>Có khả năng hồi phục mạnh. Sở trường phòng thủ và hỗ trợ đồng đội.</p>
-                            <div class="race-stats">
-                                <div class="stat-bar"><span>ATK</span><div class="bar"><div style="width:55%"></div></div></div>
-                                <div class="stat-bar"><span>DEF</span><div class="bar"><div style="width:90%"></div></div></div>
-                                <div class="stat-bar"><span>SPD</span><div class="bar"><div style="width:65%"></div></div></div>
-                            </div>
-                        </div>
-                        <div class="race-card" data-race="majin" onclick="GameApp.selectRace('majin')">
-                            <div class="race-icon">🧞</div>
-                            <h3>MAJIN</h3>
-                            <p>Sức tấn công cực mạnh. Chuyên về kỹ năng hủy diệt và gây dame cao.</p>
-                            <div class="race-stats">
-                                <div class="stat-bar"><span>ATK</span><div class="bar"><div style="width:95%"></div></div></div>
-                                <div class="stat-bar"><span>DEF</span><div class="bar"><div style="width:50%"></div></div></div>
-                                <div class="stat-bar"><span>SPD</span><div class="bar"><div style="width:60%"></div></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Character Customization -->
-                <div class="char-customization">
-                    <h2>Tùy Chỉnh Nhân Vật</h2>
-                    <div class="char-preview" id="char-preview">
-                        <canvas id="char-preview-canvas" width="200" height="300"></canvas>
-                    </div>
-                    <div class="customization-form">
-                        <div class="form-group">
-                            <label>Tên nhân vật</label>
-                            <input type="text" id="char-name" placeholder="Nhập tên nhân vật..." maxlength="15">
-                        </div>
-                        <div class="form-group">
-                            <label>Giới tính</label>
-                            <div class="gender-select">
-                                <button class="gender-btn active" data-gender="male" onclick="GameApp.selectGender('male')">♂ Nam</button>
-                                <button class="gender-btn" data-gender="female" onclick="GameApp.selectGender('female')">♀ Nữ</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Màu tóc</label>
-                            <div class="color-picker" id="hair-colors">
-                                <div class="color-swatch active" data-color="#1a1a1a" style="background:#1a1a1a" onclick="GameApp.selectHairColor('#1a1a1a')"></div>
-                                <div class="color-swatch" data-color="#8B4513" style="background:#8B4513" onclick="GameApp.selectHairColor('#8B4513')"></div>
-                                <div class="color-swatch" data-color="#FFD700" style="background:#FFD700" onclick="GameApp.selectHairColor('#FFD700')"></div>
-                                <div class="color-swatch" data-color="#FF6347" style="background:#FF6347" onclick="GameApp.selectHairColor('#FF6347')"></div>
-                                <div class="color-swatch" data-color="#4169E1" style="background:#4169E1" onclick="GameApp.selectHairColor('#4169E1')"></div>
-                                <div class="color-swatch" data-color="#FFFFFF" style="background:#FFFFFF" onclick="GameApp.selectHairColor('#FFFFFF')"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="char-create-actions">
-                <button class="btn-primary" id="btn-create-confirm" onclick="GameApp.createCharacter()">
-                    <span>TẠO NHÂN VẬT</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Game Screen -->
-    <div id="game-screen" class="screen">
-        <!-- Game Canvas -->
-        <canvas id="game-canvas"></canvas>
-
-        <!-- HUD Top -->
-        <div id="hud-top" class="hud-element">
-            <div class="hud-player-info">
-                <div class="hud-avatar" id="hud-avatar">👤</div>
-                <div class="hud-stats">
-                    <div class="hud-name" id="hud-name">Nhân vật</div>
-                    <div class="hud-level" id="hud-level">Lv.1</div>
-                    <div class="hp-bar">
-                        <div class="bar-label">HP</div>
-                        <div class="bar-track">
-                            <div class="bar-fill hp-fill" id="hp-bar"></div>
-                        </div>
-                        <div class="bar-text" id="hp-text">100/100</div>
-                    </div>
-                    <div class="mp-bar">
-                        <div class="bar-label">MP</div>
-                        <div class="bar-track">
-                            <div class="bar-fill mp-fill" id="mp-bar"></div>
-                        </div>
-                        <div class="bar-text" id="mp-text">50/50</div>
-                    </div>
-                    <div class="exp-bar">
-                        <div class="bar-label">EXP</div>
-                        <div class="bar-track">
-                            <div class="bar-fill exp-fill" id="exp-bar"></div>
-                        </div>
-                        <div class="bar-text" id="exp-text">0/100</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hud-zeni">
-                <div class="currency-item"><span>💰</span> <span id="zeni-amount">0</span> Zeni</div>
-                <div class="currency-item"><span>💎</span> <span id="diamond-amount">10,000</span> Kim Cương</div>
-            </div>
-        </div>
-
-        <!-- Minimap -->
-        <div id="minimap" class="hud-element">
-            <canvas id="minimap-canvas" width="150" height="150"></canvas>
-            <div class="minimap-label" id="map-name">Thị Trấn Phương Đông</div>
-        </div>
-
-        <!-- Hotbar -->
-        <div id="hotbar" class="hud-element">
-            <div class="hotbar-slots" id="hotbar-slots">
-                <!-- Filled by JS -->
-            </div>
-        </div>
-
-        <!-- Target Info -->
-        <div id="target-info" class="hud-element hidden">
-            <div class="target-name" id="target-name"></div>
-            <div class="target-level" id="target-level"></div>
-            <div class="target-hp">
-                <div class="bar-track">
-                    <div class="bar-fill hp-fill" id="target-hp-bar"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chat Box -->
-        <div id="chat-box" class="hud-element">
-            <div class="chat-messages" id="chat-messages"></div>
-            <div class="chat-input-row">
-                <input type="text" id="chat-input" placeholder="Nhấn Enter để chat..." maxlength="100">
-                <button onclick="GameUI.sendChat()">Gửi</button>
-            </div>
-        </div>
-
-        <!-- Menu Buttons -->
-        <div id="menu-buttons" class="hud-element">
-            <button class="menu-btn" id="btn-inventory" onclick="GameUI.toggleInventory()" title="Kho đồ (I)">🎒</button>
-            <button class="menu-btn" id="btn-character" onclick="GameUI.toggleCharInfo()" title="Nhân vật (C)">👤</button>
-            <button class="menu-btn" id="btn-skills" onclick="GameUI.toggleSkills()" title="Kỹ năng (K)">⚡</button>
-            <button class="menu-btn" id="btn-quests" onclick="GameUI.toggleQuests()" title="Nhiệm vụ (Q)">📜</button>
-            <button class="menu-btn" id="btn-map" onclick="GameUI.toggleWorldMap()" title="Bản đồ (M)">🗺️</button>
-            <button class="menu-btn" id="btn-settings" onclick="GameUI.toggleSettings()" title="Cài đặt">⚙️</button>
-        </div>
-
-        <!-- Combat Effects Layer -->
-        <div id="combat-effects" class="hud-element"></div>
-
-        <!-- Panels (Overlay windows) -->
-        <!-- Inventory Panel -->
-        <div id="panel-inventory" class="game-panel hidden">
-            <div class="panel-header">
-                <h3>🎒 KHO ĐỒ</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('inventory')">✕</button>
-            </div>
-            <div class="panel-tabs">
-                <button class="tab-btn active" onclick="GameUI.switchInventoryTab('all')">Tất cả</button>
-                <button class="tab-btn" onclick="GameUI.switchInventoryTab('weapon')">Vũ khí</button>
-                <button class="tab-btn" onclick="GameUI.switchInventoryTab('armor')">Giáp</button>
-                <button class="tab-btn" onclick="GameUI.switchInventoryTab('potion')">Bình</button>
-                <button class="tab-btn" onclick="GameUI.switchInventoryTab('misc')">Khác</button>
-            </div>
-            <div class="inventory-grid" id="inventory-grid">
-                <!-- Filled by JS -->
-            </div>
-            <div class="item-tooltip" id="item-tooltip" style="display:none"></div>
-        </div>
-
-        <!-- Character Info Panel -->
-        <div id="panel-character" class="game-panel hidden">
-            <div class="panel-header">
-                <h3>👤 NHÂN VẬT</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('character')">✕</button>
-            </div>
-            <div class="char-tabs">
-                <button class="tab-btn active" onclick="GameUI.switchCharTab('stats')">Chỉ số</button>
-                <button class="tab-btn" onclick="GameUI.switchCharTab('equip')">Trang bị</button>
-                <button class="tab-btn" onclick="GameUI.switchCharTab('enemies')">Kẻ Thù</button>
-            </div>
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="container hero-content">
+            <div class="badge">🔥 MÁY CHỦ RIÊNG - CÀY CUỐC ĐỈNH CAO 🔥</div>
+            <h1 class="main-title">HÀNH TRÌNH TÌM KIẾM <br><span class="gradient-text">7 VIÊN NGỌC RỒNG</span></h1>
+            <p class="subtitle">Trải nghiệm tựa game Chú Bé Rồng huyền thoại với tốc độ mượt mà, máy chủ vận hành 24/7, tỷ lệ rớt đồ và quà tân thủ cực khủng!</p>
             
-            <div id="tab-stats" class="char-tab-content">
-                <div class="char-info-content">
-                    <div class="char-paper-doll">
-                        <canvas id="paper-doll-canvas" width="180" height="280"></canvas>
-                        <div class="flag-selector">
-                            <label>Chọn Cờ:</label>
-                            <select id="flag-select" onchange="GameUI.changeFlag(this.value)">
-                                <option value="none">Trắng (Hòa bình)</option>
-                                <option value="black">Đen (Đồ sát)</option>
-                                <option value="red">Cờ Đỏ</option>
-                                <option value="blue">Cờ Xanh</option>
-                                <option value="yellow">Cờ Vàng</option>
-                                <option value="purple">Cờ Tím</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="char-stats-panel">
-                        <div class="stats-section">
-                            <h4>Chỉ số cơ bản</h4>
-                            <div class="stat-row"><span>Sức mạnh (STR)</span><span id="stat-str">10</span><button class="stat-plus" onclick="GameSystem.addStat('str')">+</button></div>
-                            <div class="stat-row"><span>Nhanh nhẹn (AGI)</span><span id="stat-agi">10</span><button class="stat-plus" onclick="GameSystem.addStat('agi')">+</button></div>
-                            <div class="stat-row"><span>Thể lực (VIT)</span><span id="stat-vit">10</span><button class="stat-plus" onclick="GameSystem.addStat('vit')">+</button></div>
-                            <div class="stat-row"><span>Trí tuệ (INT)</span><span id="stat-int">10</span><button class="stat-plus" onclick="GameSystem.addStat('int')">+</button></div>
-                            <div class="stat-row"><span>May mắn (LUK)</span><span id="stat-luk">5</span><button class="stat-plus" onclick="GameSystem.addStat('luk')">+</button></div>
-                        </div>
-                        <div class="stat-points-row">Điểm chỉ số còn: <span id="stat-points">0</span></div>
-                        <div class="stats-section">
-                            <h4>Chỉ số phái sinh</h4>
-                            <div class="derived-stat"><span>Phòng thủ</span><span id="d-def">30</span></div>
-                            <div class="derived-stat"><span>Tốc độ</span><span id="d-spd">100</span></div>
-                            <div class="derived-stat"><span>Crit Rate</span><span id="d-crit">5%</span></div>
-                            <div class="derived-stat"><span>HP tối đa</span><span id="d-maxhp">100</span></div>
-                        </div>
-                    </div>
+            <!-- Download Cards -->
+            <div class="download-grid" id="download">
+                <!-- PC Download Card -->
+                <div class="download-card pc-card">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">💻</div>
+                    <h3>BẢN WINDOWS (PC)</h3>
+                    <p class="card-desc">Dành cho máy tính & Laptop Windows. Đồ họa sắc nét, phím tắt mượt mà, cắm nick nhiều acc.</p>
+                    <ul class="card-features">
+                        <li>✔️ Tương thích Windows 7, 8, 10, 11</li>
+                        <li>✔️ Tải về giải nén chơi ngay (Không cần cài)</li>
+                        <li>✔️ Dung lượng nhẹ: ~26 MB</li>
+                    </ul>
+                    <a href="downloads/Dragonboy_PC.zip" class="btn btn-primary" download>
+                        <span class="btn-icon">⬇️</span> TẢI BẢN PC (.ZIP)
+                    </a>
+                </div>
+
+                <!-- Android APK Download Card -->
+                <div class="download-card android-card">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">📱</div>
+                    <h3>BẢN ANDROID (APK)</h3>
+                    <p class="card-desc">Cài đặt trực tiếp lên điện thoại Android hoặc các trình giả lập (LDPlayer, Nox, BlueStacks).</p>
+                    <ul class="card-features">
+                        <li>✔️ Hỗ trợ Android 5.0 trở lên</li>
+                        <li>✔️ Chơi mượt mà không nóng máy</li>
+                        <li>✔️ Dung lượng nhẹ: ~30 MB</li>
+                    </ul>
+                    <a href="downloads/Dragonboy_Android.apk" class="btn btn-android" download id="btn-apk">
+                        <span class="btn-icon">⬇️</span> TẢI BẢN APK (.APK)
+                    </a>
                 </div>
             </div>
 
-            <div id="tab-equip" class="char-tab-content hidden">
-                <div class="equipment-grid-container" style="padding: 20px;">
-                    <div class="equipment-slots-full">
-                        <div class="equip-slot" data-slot="helmet" title="Mũ">🪖</div>
-                        <div class="equip-slot" data-slot="weapon" title="Vũ khí">⚔️</div>
-                        <div class="equip-slot" data-slot="armor" title="Giáp">🛡️</div>
-                        <div class="equip-slot" data-slot="offhand" title="Phụ">🗡️</div>
-                        <div class="equip-slot" data-slot="boots" title="Giày">👢</div>
-                        <div class="equip-slot" data-slot="accessory" title="Phụ kiện">💍</div>
-                    </div>
-                    <p style="text-align:center; color:#888; margin-top:10px;">Click vào trang bị trong túi đồ để mặc.</p>
-                </div>
-            </div>
-
-            <div id="tab-enemies" class="char-tab-content hidden">
-                <div class="enemy-list-box" style="padding: 20px;">
-                    <ul id="enemy-list" class="enemy-list"></ul>
-                </div>
-            </div>
-
-            <div id="tab-friends" class="char-tab-content hidden">
-                <div class="friend-list-box" style="padding: 20px;">
-                    <ul id="friend-list" class="friend-list"></ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Skills Panel -->
-        <div id="panel-skills" class="game-panel hidden">
-            <div class="panel-header">
-                <h3>⚡ KỸ NĂNG</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('skills')">✕</button>
-            </div>
-            <div class="skill-points-info">Điểm kỹ năng: <span id="skill-points">0</span></div>
-            <div class="skills-grid" id="skills-grid">
-                <!-- Filled by JS -->
-            </div>
-        </div>
-
-        <!-- Quests Panel -->
-        <div id="panel-quests" class="game-panel hidden">
-            <div class="panel-header">
-                <h3>📜 NHIỆM VỤ</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('quests')">✕</button>
-            </div>
-            <div class="quest-tabs">
-                <button class="tab-btn active" onclick="GameUI.switchQuestTab('active')">Đang làm</button>
-                <button class="tab-btn" onclick="GameUI.switchQuestTab('completed')">Đã hoàn thành</button>
-            </div>
-            <div class="quest-list" id="quest-list"></div>
-            <div class="quest-detail" id="quest-detail"></div>
-        </div>
-
-        <!-- World Map -->
-        <div id="panel-worldmap" class="game-panel hidden panel-large">
-            <div class="panel-header">
-                <h3>🗺️ BẢN ĐỒ THẾ GIỚI</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('worldmap')">✕</button>
-            </div>
-            <div class="world-map-container">
-                <canvas id="world-map-canvas" width="700" height="500"></canvas>
-                <div id="map-tooltips"></div>
-            </div>
-        </div>
-
-        <!-- Settings Panel -->
-        <div id="panel-settings" class="game-panel hidden">
-            <div class="panel-header">
-                <h3>⚙️ CÀI ĐẶT</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('settings')">✕</button>
-            </div>
-            <div class="settings-content">
-                <div class="setting-row">
-                    <label>Âm lượng nhạc nền</label>
-                    <input type="range" id="music-volume" min="0" max="100" value="70" oninput="GameAudio.setMusicVolume(this.value)">
-                    <span id="music-vol-text">70%</span>
-                </div>
-                <div class="setting-row">
-                    <label>Âm lượng hiệu ứng</label>
-                    <input type="range" id="sfx-volume" min="0" max="100" value="80" oninput="GameAudio.setSfxVolume(this.value)">
-                    <span id="sfx-vol-text">80%</span>
-                </div>
-                <div class="setting-row">
-                    <label>Hiển thị tên NPC</label>
-                    <input type="checkbox" id="show-npc-names" checked onchange="GameSettings.toggle('showNpcNames', this.checked)">
-                </div>
-                <div class="setting-row">
-                    <label>Hiển thị HP thanh quái</label>
-                    <input type="checkbox" id="show-monster-hp" checked onchange="GameSettings.toggle('showMonsterHp', this.checked)">
-                </div>
-                <div class="setting-row">
-                    <label>Hiệu ứng chiến đấu</label>
-                    <input type="checkbox" id="combat-effects" checked onchange="GameSettings.toggle('combatEffects', this.checked)">
-                </div>
-                <div class="settings-actions">
-                    <button class="btn-primary" onclick="GameSystem.saveGame()">💾 Lưu game</button>
-                    <button class="btn-danger" onclick="GameApp.backToCharSelect()">🚪 Thoát game</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Social Request Dialog -->
-        <div id="panel-social-request" class="social-request-overlay hidden">
-            <div class="social-request-card">
-                <div class="request-icon">📩</div>
-                <div class="request-content">
-                    <h4 id="social-request-title">Lời mời</h4>
-                    <p id="social-request-msg">Người chơi muốn tương tác với bạn.</p>
-                </div>
-                <div class="request-actions">
-                    <button class="btn-confirm" onclick="GameUI.acceptSocial()">Đồng ý</button>
-                    <button class="btn-cancel" onclick="GameUI.rejectSocial()">Từ chối</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Trade Panel -->
-        <div id="panel-trade" class="game-panel hidden panel-large">
-            <div class="panel-header">
-                <h3>🤝 GIAO DỊCH</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('trade')">✕</button>
-            </div>
-            <div class="trade-content">
-                <div class="trade-side my-side">
-                    <h4>Bạn</h4>
-                    <div class="trade-slots" id="my-trade-slots"></div>
-                    <div class="trade-money">💰 Vàng: <input type="number" id="my-trade-zeni" value="0" min="0"></div>
-                    <div class="trade-money">💎 Ngọc: <input type="number" id="my-trade-diamonds" value="0" min="0"></div>
-                    <div class="trade-status" id="my-trade-status">Chưa sẵn sàng</div>
-                </div>
-                <div class="trade-mid">➔</div>
-                <div class="trade-side partner-side">
-                    <h4 id="trade-partner-name">Đối phương</h4>
-                    <div class="trade-slots" id="partner-trade-slots"></div>
-                    <div class="trade-money">💰 Vàng: <span id="partner-trade-zeni">0</span></div>
-                    <div class="trade-money">💎 Ngọc: <span id="partner-trade-diamonds">0</span></div>
-                    <div class="trade-status" id="partner-trade-status">Chưa sẵn sàng</div>
-                </div>
-            </div>
-            <div class="trade-actions">
-                <button class="btn-primary" id="btn-lock-trade" onclick="GameUI.lockTrade()">KHÓA</button>
-                <button class="btn-confirm hidden" id="btn-confirm-trade" onclick="GameUI.confirmTrade()">XÁC NHẬN</button>
-            </div>
-        </div>
-
-        <!-- Party HUD -->
-        <div id="party-hud" class="hud-element hidden">
-            <div class="party-title">NHÓM</div>
-            <div id="party-members" class="party-list"></div>
-        </div>
-
-        <!-- NPC Dialog -->
-        <div id="npc-dialog" class="game-panel hidden npc-dialog-panel">
-            <div class="npc-dialog-portrait" id="npc-portrait">🧙</div>
-            <div class="npc-dialog-content">
-                <div class="npc-dialog-name" id="npc-dialog-name">NPC</div>
-                <div class="npc-dialog-text" id="npc-dialog-text"></div>
-                <div class="npc-dialog-choices" id="npc-dialog-choices"></div>
-            </div>
-        </div>
-
-        <!-- Player Interaction Panel -->
-        <div id="panel-player-interaction" class="game-panel hidden panel-small interaction-panel">
-            <div class="panel-header">
-                <h3 id="interact-player-name">Người chơi</h3>
-                <button class="panel-close" onclick="GameUI.closePanel('player-interaction')">✕</button>
-            </div>
-            <div class="interact-body">
-                <div class="interact-info">
-                     <div class="interact-avatar" id="interact-player-avatar">🧍</div>
-                     <div class="interact-stats">
-                          <div id="interact-player-level" class="interact-lv">Lv.1</div>
-                          <div class="hp-bar-small"><div id="interact-player-hp-fill" class="hp-fill"></div></div>
-                          <div id="interact-player-hp-text" class="hp-text-small">100 / 100</div>
-                     </div>
-                </div>
-                <div class="interact-options">
-                     <button class="opt-btn" onclick="GameUI.requestTrade()">💸 Giao dịch</button>
-                     <button class="opt-btn" onclick="GameUI.requestPK()">⚔️ Thách đấu PK</button>
-                     <button class="opt-btn" onclick="GameUI.addFriend()">🤝 Kết bạn</button>
-                     <button class="opt-btn" onclick="GameUI.inviteParty()">👨‍👩‍👧‍👦 Mời vào nhóm</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Shop Panel -->
-        <div id="panel-shop" class="game-panel hidden panel-large">
-            <div class="panel-header">
-                <h3 id="shop-title">🏪 CỬA HÀNG</h3>
-                <div class="shop-zeni">💰 <span id="shop-player-zeni">0</span> Zeni</div>
-                <button class="panel-close" onclick="GameUI.closePanel('shop')">✕</button>
-            </div>
-            <div class="shop-content">
-                <div class="shop-buy-section">
-                    <h4>Mua đồ</h4>
-                    <div class="shop-items" id="shop-items"></div>
-                </div>
-                <div class="shop-sell-section">
-                    <h4>Bán đồ</h4>
-                    <div class="shop-sell-items" id="shop-sell-items"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Battle UI -->
-        <div id="battle-ui" class="battle-overlay hidden">
-            <div class="battle-arena">
-                <div class="battle-side player-side">
-                    <div class="battle-char-display" id="battle-player-display">
-                        <canvas id="battle-player-canvas" width="200" height="250"></canvas>
-                    </div>
-                    <div class="battle-char-info">
-                        <div class="battle-name" id="battle-player-name">Bạn</div>
-                        <div class="battle-hp-bar">
-                            <div class="battle-hp-fill" id="battle-player-hp"></div>
-                        </div>
-                        <div class="battle-hp-text" id="battle-player-hp-text">100/100</div>
-                        <div class="battle-mp-bar">
-                            <div class="battle-mp-fill" id="battle-player-mp"></div>
-                        </div>
+            <!-- Server Info & Giftcode -->
+            <div class="info-section">
+                <div class="info-card">
+                    <h4>🎁 QUÀ TÂN THỦ</h4>
+                    <p>Nhập Giftcode ngay khi vào game để nhận <strong>Ngọc Xanh, Thỏi Vàng</strong> và <strong>Đệ Tử</strong> khủng!</p>
+                    <div class="code-box">
+                        <code>TANTHU2026</code>
                     </div>
                 </div>
-                <div class="battle-vs">VS</div>
-                <div class="battle-side enemy-side">
-                    <div class="battle-char-display" id="battle-enemy-display">
-                        <canvas id="battle-enemy-canvas" width="200" height="250"></canvas>
-                    </div>
-                    <div class="battle-char-info">
-                        <div class="battle-name" id="battle-enemy-name">Kẻ thù</div>
-                        <div class="battle-hp-bar">
-                            <div class="battle-hp-fill" id="battle-enemy-hp"></div>
-                        </div>
-                        <div class="battle-hp-text" id="battle-enemy-hp-text">100/100</div>
-                    </div>
+
+                <div class="info-card">
+                    <h4>⚡ TÍNH NĂNG MÁY CHỦ</h4>
+                    <ul>
+                        <li>Tỷ lệ EXP: <strong>x5 Cực nhanh</strong></li>
+                        <li>Đại Hội Võ Thuật 23 tự động</li>
+                        <li>Săn Boss Broly, Black Goku nhận cải trang VIP</li>
+                        <li>Hệ thống giao dịch & ký gửi uy tín 100%</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h4>💬 CỘNG ĐỒNG & HỖ TRỢ</h4>
+                    <p>Tham gia giao lưu cùng hàng trăm chiến binh và nhận thông báo bảo trì, sự kiện sớm nhất:</p>
+                    <a href="https://zalo.me" target="_blank" class="btn btn-community">
+                        💬 THAM GIA BOX ZALO GAME
+                    </a>
                 </div>
             </div>
-            <div class="battle-log" id="battle-log"></div>
-            <div class="battle-actions" id="battle-actions">
-                <button class="battle-btn attack" onclick="BattleSystem.doAttack()">⚔️ Tấn công</button>
-                <button class="battle-btn skill" onclick="BattleSystem.showSkillMenu()">⚡ Kỹ năng</button>
-                <button class="battle-btn item" onclick="BattleSystem.showItemMenu()">🧪 Vật phẩm</button>
-                <button class="battle-btn defend" onclick="BattleSystem.doDefend()">🛡️ Phòng thủ</button>
-                <button class="battle-btn run" onclick="BattleSystem.tryRun()">🏃 Chạy</button>
-            </div>
-            <div class="battle-skill-menu hidden" id="battle-skill-menu"></div>
-            <div class="battle-item-menu hidden" id="battle-item-menu"></div>
-        </div>
 
-        <!-- Floating Damage Numbers -->
-        <div id="damage-numbers" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;"></div>
-
-        <!-- Level Up Notification -->
-        <div id="levelup-notification" class="hidden">
-            <div class="levelup-content">
-                <div class="levelup-text">🌟 THĂNG CẤP! 🌟</div>
-                <div class="levelup-level" id="levelup-level">Cấp 2</div>
-            </div>
-        </div>
-
-        <!-- Notification Toast -->
-        <div id="notifications" class="notifications-container"></div>
-        <!-- Death Panel -->
-        <div id="panel-death" class="game-panel hidden panel-modal">
-            <div class="panel-header">
-                <h3>💀 BẠN ĐÃ TỬ TRẬN</h3>
-            </div>
-            <div class="death-content">
-                <p>Bạn muốn hồi sinh ở đâu?</p>
-                <div class="death-options">
-                    <button class="btn-death-revive" onclick="WorldSystem.reviveAtSpot()">
-                        <span>✨ Hồi sinh tại chỗ</span>
-                        <small>(Tốn 1 Kim Cương)</small>
-                    </button>
-                    <button class="btn-death-home" onclick="WorldSystem.reviveAtHome()">
-                        <span>🏠 Trở về nhà</span>
-                        <small>(Miễn phí)</small>
-                    </button>
+            <!-- Installation Guide -->
+            <section class="guide-section">
+                <h2 class="section-title">HƯỚNG DẪN CÀI ĐẶT & CHƠI GAME</h2>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <h4>Tải Game Về Máy</h4>
+                        <p>Chọn nút tải bản <strong>PC (.ZIP)</strong> hoặc <strong>Android (.APK)</strong> ở phía trên.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <h4>Mở Game</h4>
+                        <p>Với PC: Giải nén thư mục và chạy file <code>Dragonboy_vn_v203.exe</code>. Với Android: Mở file APK để cài đặt.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <h4>Đăng Ký & Vào Chơi</h4>
+                        <p>Tại màn hình đăng nhập, chọn <strong>"Đăng ký tài khoản mới"</strong> hoàn toàn miễn phí và bắt đầu chiến thôi!</p>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
 
-    <!-- Scripts -->
-    <script src="js/utils.js"></script>
-    <script src="js/data/items.js"></script>
-    <script src="js/data/skills.js"></script>
-    <script src="js/data/monsters.js"></script>
-    <script src="js/data/maps.js"></script>
-    <script src="js/data/npcs.js"></script>
-    <script src="js/data/quests.js"></script>
-    <script src="js/audio.js"></script>
-    <script src="js/renderer.js"></script>
-    <script src="js/character.js"></script>
-    <script src="js/battle.js"></script>
-    <script src="js/inventory.js"></script>
-    <script src="js/skills.js"></script>
-    <script src="js/quests.js"></script>
-    <script src="js/npc.js"></script>
-    <script src="js/world.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/game.js"></script>
-    <script src="js/app.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 Ngọc Rồng Online Server. Trò chơi phi thương mại phục vụ giải trí cùng bạn bè.</p>
+            <p class="footer-sub">Vận hành máy chủ trên nền tảng Linux VPS tối ưu hiệu năng 24/7.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('btn-apk').addEventListener('click', function(e) {
+            fetch(this.getAttribute('href'), { method: 'HEAD' })
+                .then(res => {
+                    if (!res.ok) {
+                        e.preventDefault();
+                        alert('⚠️ Phiên bản APK Android đang được tối ưu và đóng gói! Bạn vui lòng tải trước bản PC (Windows) để trải nghiệm hoặc quay lại sau nhé.');
+                    }
+                }).catch(() => {
+                    e.preventDefault();
+                    alert('⚠️ Phiên bản APK Android đang được tối ưu và đóng gói! Bạn vui lòng tải trước bản PC (Windows) để trải nghiệm hoặc quay lại sau nhé.');
+                });
+        });
+    </script>
 </body>
 </html>
